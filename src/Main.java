@@ -37,6 +37,8 @@ public class Main {
         ListIterator<Song>itr = myPlayList.listIterator();
         System.out.println("Now playling: " + itr.next());
 
+        boolean wasNext = true;
+
         Scanner sc = new Scanner(System.in);
 
 
@@ -52,6 +54,10 @@ public class Main {
                     printMenu();
                     break;
                 case 2:
+                    if(wasNext == false){
+                        itr.next();
+                        wasNext = true;
+                    }
                     if(!itr.hasNext()){
                         System.out.println("You have reached the end of the playlist!!!");
                     }
@@ -60,6 +66,10 @@ public class Main {
                     }
                     break;
                 case 3:
+                    if(wasNext == true){
+                        itr.previous();
+                        wasNext = false;
+                    }
                     if(!itr.hasPrevious()){
                         System.out.println("You are at the start of playlist");
                     }
@@ -68,6 +78,14 @@ public class Main {
                     }
                     break;
                 case 4:
+                    if(wasNext==true){
+                        System.out.println("Current playing: " + itr.previous());
+                        wasNext=false;
+                    }
+                    else{
+                        System.out.println("Current playing: " + itr.next());
+                        wasNext=true;
+                    }
                     break;
                 case 5:
                     break;
